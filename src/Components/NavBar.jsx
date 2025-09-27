@@ -1,214 +1,194 @@
-import React, { useState, useEffect } from "react";
-import { HashLink } from "react-router-hash-link";
-import Modals from "./Modals";
-import InputForm from "./inputForm";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { FiShoppingBag } from "react-icons/fi";
+import { IoMdMenu, IoMdClose } from "react-icons/io";
+import { ProductContext } from "./prodoctContextApi/ContextApi";
 
 const NavBar = () => {
-  let token = localStorage.getItem("token"); // جلب التوكن من LocalStorage
-
-  const [isLogin, setIsLogin] = useState(token ? true : false); // حالة تسجيل الدخول
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // فتح/إغلاق المودال
-
-  // تحديث حالة تسجيل الدخول لو فيه أو مفيش توكن
-  useEffect(() => {
-    setIsLogin(token ? true : false);
-  }, [token]);
-
-  // عند الضغط على زر Login/Logout
-  const checkLogin = () => {
-    if (token) {
-      // لو فيه توكن → يعمل Logout
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setIsLogin(false);
-    } else {
-      // لو مفيش توكن → يفتح مودال تسجيل الدخول
-      setIsOpen(true);
-    }
-  };
-
-  // إغلاق المودال
-  const closeeModel = () => {
-    setIsOpen(false);
-  };
-
-  // دالة حماية الروابط
-  const handleProtectedRoute = (e) => {
-    if (!isLogin) {
-      e.preventDefault(); // منع الانتقال للرابط
-      setIsOpen(true); // يفتح المودال بدل ما يدخل الصفحة
-    }
-  };
-
-  // تغير شكل النافبار عند النزول (Scroll)
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // روابط التنقل
-  const navLinks = [
-    { name: "Home", path: "/#Home" },
-    { name: "MyRecipes", path: "/MyRecipes", onClick: handleProtectedRoute },
-    { name: "AddRecipe", path: "/AddRecipe", onClick: handleProtectedRoute },
-    { name: "About", path: "/#about" },
+  const links = [
+    { id: "1", name: "Home", path: "/" },
+    { id: "2", name: "Men's", path: "/mens" },
+    { id: "3", name: "Women's", path: "/womens" },
+    { id: "4", name: "Kid's", path: "/kids" },
   ];
 
+  const [open, setOpen] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { quantity, message } = useContext(ProductContext);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 200) {
+        // لو نازل تحت → اخفي الناف
+        setShowNav(false);
+      } else {
+        // لو طالع فوق → أظهر الناف
+        setShowNav(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
-      {/* شريط التنقل (Navbar) */}
       <nav
-        className={`fixed top-0 left-0 bg-[#ff6011] w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${
-          isScrolled
-            ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4"
-            : "py-4 md:py-6"
-        }`}
+        className={`fixed top-0 left-0 w-full z-100 transition-transform duration-500 ${
+          showNav ? "translate-y-0" : "-translate-y-full"
+        } bg-white shadow-md`}
       >
-        {/* الشعار (Logo) */}
-        <a href="/" className="flex items-center gap-2">
-          <img
-            src={"https://prebuiltui.com/logo.svg?p=white&s=white&t=white"}
-            alt="logo"
-            className={`h-9 ${isScrolled && "invert opacity-80"}`}
-          />
-        </a>
-
-        {/* روابط الديسكتوب */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-8">
-          {navLinks.map((link, i) => (
-            <HashLink
-              key={i}
-              to={link.path}
-              onClick={link.onClick}
-              className={`group flex flex-col gap-0.5 ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
-            >
-              {link.name}
-              {/* خط متحرك تحت الرابط عند الـ hover */}
-              <div
-                className={`${
-                  isScrolled ? "bg-gray-700" : "bg-white"
-                } h-0.5 w-0 group-hover:w-full transition-all duration-300`}
-              />
-            </HashLink>
-          ))}
-          {/* زر إضافي "New Launch" */}
-
-          <Link
-            to="/addRecipe"
-            className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${
-              isScrolled ? "text-black" : "text-white"
-            } transition-all`}
+        {/* // allert message */}
+        {message && (
+          <div
+            className={`fixed top-28 right-6 flex items-start gap-3 p-4 rounded-lg shadow-lg border w-80 animate-slide-in
+      ${
+        message.includes("✅")
+          ? "bg-green-50 border-green-200 text-green-700"
+          : message.includes("⚠️")
+          ? "bg-yellow-50 border-yellow-200 text-yellow-700"
+          : "bg-red-50 border-red-200 text-red-700"
+      }`}
           >
-            New Launch
-          </Link>
-        </div>
+            {/* Icon */}
+            <div className="flex-shrink-0 mt-1">
+              {message.includes("✅") ? (
+                <svg
+                  className="w-5 h-5 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : message.includes("⚠️") ? (
+                <svg
+                  className="w-5 h-5 text-yellow-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.662 1.732-3L13.732 4c-.77-1.338-2.694-1.338-3.464 0L3.34 16c-.77 1.338.192 3 1.732 3z"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="w-5 h-5 text-red-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </div>
 
-        {/* أزرار الديسكتوب (بحث + تسجيل الدخول) */}
-        <div className="hidden md:flex items-center gap-4">
-          <svg
-            className={`h-6 w-6 text-white transition-all duration-500 ${
-              isScrolled ? "invert" : ""
-            }`}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <button
-            onClick={checkLogin}
-            className={`px-8 py-2.5 rounded-full ml-4 transition-all duration-500 cursor-pointer ${
-              isScrolled ? "text-white bg-black" : "bg-white text-black"
-            }`}
-          >
-            {isLogin ? "Logout" : "Login"}
-          </button>
-        </div>
+            {/* Text */}
+            <div className="flex-1">
+              <h3 className="font-semibold">
+                {message.includes("✅")
+                  ? "Success"
+                  : message.includes("⚠️")
+                  ? "Warning"
+                  : "Error"}
+              </h3>
+              <p className="text-sm">{message}</p>
+            </div>
+          </div>
+        )}
 
-        {/* زر القائمة للموبايل */}
-        <div className="flex items-center gap-3 md:hidden">
-          <svg
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`h-6 w-6 cursor-pointer ${isScrolled ? "invert" : ""}`}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <line x1="4" y1="6" x2="20" y2="6" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="18" x2="20" y2="18" />
-          </svg>
-        </div>
+        <div className="container mx-auto flex items-center justify-between px-6 py-8">
+          {/* Logo */}
+          <div className="text-2xl font-bold tracking-wide cursor-pointer">
+            Logo
+          </div>
 
-        {/* القائمة في الموبايل */}
-        <div
-          className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${
-            isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          {/* زر إغلاق القائمة */}
-          <button
-            className="absolute top-4 right-4"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          {/* Links - للشاشات الكبيرة */}
+          <ul className="gap-6 hidden md:flex">
+            {links.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={item.path}
+                  className="hover:text-yellow-400 transition-colors duration-300"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-          {/* روابط الموبايل */}
-          {navLinks.map((link, i) => (
-            <HashLink
-              key={i}
-              to={link.path}
-              onClick={(e) => {
-                if (link.onClick) link.onClick(e);
-                setIsMenuOpen(false);
-              }}
-            >
-              {link.name}
-            </HashLink>
-          ))}
+          {/* Buttons */}
+          <div className="flex gap-3 items-center">
+            <Link to={"/ShoppingCart"}>
+              <button className="relative ">
+                <span className="absolute -top-4 -right-1 cursor-pointer bg-red-500 text-white text-xs font-bold py-1 px-2 rounded-full">
+                  {quantity}
+                </span>
+                <FiShoppingBag className="text-amber-700 text-2xl mr-4 cursor-pointer" />
+              </button>
+            </Link>
+            <button className="hidden md:flex py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+              Log in
+            </button>
+            <button className="hidden md:flex py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+              Sign up
+            </button>
 
-          {/* زر إضافي */}
-          <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-            New Launch
-          </button>
-
-          {/* زر تسجيل الدخول/الخروج في الموبايل */}
-          <button
-            onClick={checkLogin}
-            className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500 cursor-pointer"
-          >
-            {isLogin ? "Logout" : "Login"}
-          </button>
+            {/* Hamburger Menu Button */}
+            <button onClick={() => setOpen(!open)} className="md:hidden">
+              {open ? (
+                <IoMdClose className="text-2xl" />
+              ) : (
+                <IoMdMenu className="text-2xl" />
+              )}
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* المودال يظهر عند الضغط على Login */}
-      {isOpen && (
-        <Modals onClose={closeeModel}>
-          <InputForm />
-        </Modals>
+      {/* Mobile Menu */}
+      {open && (
+        <ul className="flex flex-col gap-6 mt-4 px-6 py-4 w-70 h-screen absolute right-0 text-center bg-gray-100 shadow-md md:hidden">
+          {links.map((item) => (
+            <li key={item.id}>
+              <Link
+                to={item.path}
+                className="block hover:text-yellow-400 transition-colors duration-300"
+                onClick={() => setOpen(false)}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+
+          <li>
+            <button className="w-full py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+              Log in
+            </button>
+          </li>
+          <li>
+            <button className="w-full py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+              Sign up
+            </button>
+          </li>
+        </ul>
       )}
     </>
   );

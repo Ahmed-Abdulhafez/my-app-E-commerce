@@ -1,7 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
 body {
   font-family: "Roboto", sans-serif;
 }
 
+/* 
+.swiper-button-prev:after, .swiper-button-next:after{
+  font-size: 18px !important;
+  color: black;
+  font-weight: bolder;
+  padding: 20px ;
+ 
+  border: 1px solid black;
+  z-index: 1111;
+}
+
+ .swiper-button-next:after{
+  margin-left: 120px;
+  z-index: 1111;
+ }
+
+ .swiper-button-prev:after{
+  margin-left: 120px;
+
+ } */
+
+ .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
+  display: none;
+ }
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out 0.4s ease-in forwards;
+}
 

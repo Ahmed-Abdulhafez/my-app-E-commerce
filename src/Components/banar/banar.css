@@ -1,0 +1,18 @@
+/* .hover-content {
+  display: none; 
+}
+
+.parent:hover .hover-content {
+  display: block;
+  background-color: #2a2a2a;
+  width: 90%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.parent:hover .nmae{
+    display: none;
+}
+
+ */

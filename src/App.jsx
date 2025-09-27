@@ -1,48 +1,34 @@
-import React, { useEffect, useState } from "react";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-// Components
-import Home from "./Components/Home.jsx";
+import React from "react";
 import NavBar from "./Components/NavBar";
-// react-spinners
-import RingLoader from "react-spinners/RingLoader";
-import MyRecipes from "./Components/MyRecipes.jsx";
-import AddRecipe from "./Components/AddRecipe.jsx";
-import EditRecipe from "./Components/EditRecipe.jsx";
-import Footer from "./Components/Footer.jsx";
+import { Route, Routes } from "react-router";
+import Home from "./Components/home/Home";
+import Footer from "./Components/Footer";
+import ContactUs from "./Components/Contact-us/ContactUs";
+import Men from "./Components/products/Men";
+import Women from "./Components/products/Women";
+import Kids from "./Components/products/Kids";
+import ProductsPage from "./Components/products/ProductsPage";
+import ShoppingCart from "./Components/shopping/ShoppingCart";
 
-
-function App() {
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // وقت تحميل لمدة 3 ثوانٍ
-  }, []);
-
+const App = () => {
   return (
-    <BrowserRouter>
-      {loading ? (
-        <div className="flex justify-center items-center h-screen bg-indigo-200" >
-          <RingLoader color="red"/>
-        </div>
+    <div>
+      <NavBar />
+      <Routes>
+        <Route path="/" index element={<Home />} />
+        <Route path="/mens" element={<Men />} />
+        <Route path="/womens" element={<Women />} />
+        <Route path="/kids" element={<Kids />} />
+        <Route path="/Contact" element={<ContactUs/>} />
 
-      ) : (
-        <>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="MyRecipes" element={<MyRecipes />} />
-            <Route path="addRecipe" element={<AddRecipe />} />
-            <Route path="EditRecipe/:id" element={<EditRecipe />} />
-          </Routes>
-          <Footer />
-        </>
-      )}
-    </BrowserRouter>
+        <Route path="/ProductsPage/:id" element={<ProductsPage />} />
+        <Route path="/ShoppingCart" element={<ShoppingCart />} />
+
+        <Route path="*" />
+      </Routes>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
