@@ -5,7 +5,6 @@ import SliderWomen from '../slider/SliderWomen'
 import SliderKid from '../slider/SliderKid'
 import ExploreOur from '../Explore/ExploreOur'
 import Social from '../Social/Social'
-import ContactUs from '../Contact-us/ContactUs.JSX'
 
 
 const Home = () => {
