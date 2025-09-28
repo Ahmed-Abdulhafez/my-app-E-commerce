@@ -6,23 +6,23 @@
       "description": "A stylish women's dress made from soft fabric, perfect for parties and evening wear.",
       "price": 85.00,
       "start": "4.7",
-      "image": "/src/assets/image-men/men-01.jpg",
+      "image": "image-men/men-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -36,19 +36,19 @@
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -58,23 +58,23 @@
       "price": 40.00,
       "start": "4.5",
       "description": "Comfortable cotton outfit designed for kids’ daily activities.",
-      "image": "/src/assets/image-men/men-03.jpg",
+      "image": "image-men/men-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -84,23 +84,23 @@
       "price": 25.00,
       "start": "4.4",
       "description": "Trendy accessories set that completes your everyday look.",
-      "image": "/src/assets/image-men/team-member-03.jpg",
+      "image": "image-men/team-member-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -110,23 +110,23 @@
       "price": 95.00,
       "start": "4.8",
       "description": "Stylish women's winter jacket with a modern design.",
-      "image": "/src/assets/image-men/men-01.jpg",
+      "image": "image-men/men-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -136,23 +136,23 @@
       "price": 70.00,
       "start": "4.6",
       "description": "Comfortable men's pants perfect for all occasions.",
-      "image": "/src/assets/image-men/men-02.jpg",
+      "image": "image-men/men-02.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -162,23 +162,23 @@
       "price": 38.00,
       "start": "4.5",
       "description": "Kids’ cotton T-shirt with bright colors, ideal for school.",
-      "image": "/src/assets/image-men/men-03.jpg",
+      "image": "image-men/men-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -188,23 +188,23 @@
       "price": 30.00,
       "start": "4.4",
       "description": "Compact and stylish handbag for daily use.",
-      "image": "/src/assets/image-men/team-member-03.jpg",
+      "image": "image-men/team-member-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     }
@@ -216,23 +216,23 @@
       "price": 80.00,
       "start": "4.7",
       "description": "Lightweight summer dress with vibrant colors.",
-      "image": "/src/assets/image-women/explore-image-02.jpg",
+      "image": "image-women/explore-image-02.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -242,23 +242,23 @@
       "price": 68.00,
       "start": "4.5",
       "description": "100% cotton men's T-shirt with premium quality.",
-      "image": "/src/assets/image-women/instagram-01.jpg",
+      "image": "image-women/instagram-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -268,23 +268,23 @@
       "price": 42.00,
       "start": "4.6",
       "description": "Charming kids’ dress designed for comfort and fun.",
-      "image": "/src/assets/image-women/instagram-03.jpg",
+      "image": "image-women/instagram-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -294,23 +294,23 @@
       "price": 28.00,
       "start": "4.4",
       "description": "Trendy women's sunglasses with UV protection.",
-      "image": "/src/assets/image-women/women-01.jpg",
+      "image": "image-women/women-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -320,23 +320,23 @@
       "price": 90.00,
       "start": "4.8",
       "description": "Luxury silk blouse suitable for evening occasions.",
-      "image": "/src/assets/image-women/women-02.jpg",
+      "image": "image-women/women-02.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -346,23 +346,23 @@
       "price": 72.00,
       "start": "4.6",
       "description": "Trendy men's jacket, perfect for autumn.",
-      "image": "/src/assets/image-women/women-03.jpg",
+      "image": "image-women/women-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -372,23 +372,23 @@
       "price": 35.00,
       "start": "4.5",
       "description": "Light cotton shorts for kids, ideal for summer days.",
-      "image": "/src/assets/image-women/women-01.jpg",
+      "image": "image-women/women-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -398,23 +398,23 @@
       "price": 22.00,
       "start": "4.3",
       "description": "Trendy hair accessories set for girls.",
-      "image": "/src/assets/image-women/women-03.jpg",
+      "image": "image-women/women-03.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     }
@@ -426,23 +426,23 @@
       "price": 78.00,
       "start": "4.7",
       "description": "Soft cardigan for women, perfect for daily wear.",
-      "image": "/src/assets/image-kids/kid-01.jpg",
+      "image": "image-kids/kid-01.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
@@ -452,23 +452,23 @@
       "price": 69.00,
       "start": "4.5",
       "description": "Men’s sporty T-shirt made of breathable fabric.",
-      "image": "/src/assets/image-kids/kid-02.jpg",
+      "image": "image-kids/kid-02.jpg",
       "img": [
         {
           "id": 1,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 2,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 3,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         },
         {
           "id": 4,
-          "image": "/src/assets/image-men/men-01.jpg"
+          "image": "image-men/men-01.jpg"
         }
       ]
     },
