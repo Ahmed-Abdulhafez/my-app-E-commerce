@@ -19,7 +19,7 @@ const ExploreOur = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-15 py-10 grid grid-cols-2 gap-7">
+    <div className="container mx-auto px-15 py-10 grid grid-cols-1 md:grid-cols-2 gap-7">
       <div className="mb-6">
         <p className="text-1xl mb-6 text-gray-500 italic">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas labore

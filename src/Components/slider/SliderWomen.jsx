@@ -16,8 +16,8 @@ const SliderMan = () => {
   const products = product.women || [];
   return (
     <div>
-      <div className="container mx-auto px-4 md:px-10 lg:px-15 mb-40 mt-20">
-        <div className="mb-10 mt-16">
+      <div className="mx-5 px-4 md:px-10 lg:px-15 mb-15 mt-10">
+        <div className="mb-10 mt-5">
           <h1 className="text-4xl font-bold mb-2">Women's Latest</h1>
           <p className="text-gray-600">
             Details to details is what makes Hexashop different from the other
