@@ -98,7 +98,7 @@ w-12 h-12 bg-white border border-black  flex items-center justify-center
 z-50 cursor-pointer transition duration-300 hover:scale-101"
           >
             <img
-              src="\src\Components\prev.png" // خلي الصورة في public واستخدم المسار كده
+              src="/prev.png" // خلي الصورة في public واستخدم المسار كده
               alt="Previous"
               className="w-8 h-8 pr-2 object-contain"
             />
@@ -111,7 +111,7 @@ w-12 h-12 bg-white border border-black  flex items-center justify-center
 z-50 cursor-pointer transition duration-300  hover:scale-101"
           >
             <img
-              src="\src\Components\next.png" // نفس المبدأ
+              src="/next.png" // نفس المبدأ
               alt="Next"
               className="w-8 h-8 pl-2  object-contain"
             />

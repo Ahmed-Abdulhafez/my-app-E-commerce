@@ -30,8 +30,8 @@ const SliderMan = () => {
             loop={products.length > 3} // لو عدد المنتجات أقل من 3، لا تعمل اللوب
             pagination={{ clickable: true }}
             navigation={{
-              nextEl: ".man-swiper-next",
-              prevEl: ".man-swiper-prev",
+              nextEl: ".women-swiper-next",
+              prevEl: ".women-swiper-prev",
             }}
             modules={[Pagination, Navigation]}
             className="mySwiper"
@@ -93,12 +93,12 @@ const SliderMan = () => {
           {/* أزرار التنقل خارج السلايدر */}
           {/* زر السابق */}
           <div
-            className="man-swiper-prev absolute left-[-60px] top-1/2 -translate-y-1/2 
+            className="women-swiper-prev absolute left-[-60px] top-1/2 -translate-y-1/2 
 w-12 h-12 bg-white border border-black  flex items-center justify-center 
 z-50 cursor-pointer transition duration-300 hover:scale-101"
           >
             <img
-              src="\src\Components\prev.png" // خلي الصورة في public واستخدم المسار كده
+              src="/prev.png" // خلي الصورة في public واستخدم المسار كده
               alt="Previous"
               className="w-8 h-8 pr-2 object-contain"
             />
@@ -106,12 +106,12 @@ z-50 cursor-pointer transition duration-300 hover:scale-101"
 
           {/* زر التالي */}
           <div
-            className="man-swiper-next absolute right-[-60px] top-1/2 -translate-y-1/2 
+            className="women-swiper-next absolute right-[-60px] top-1/2 -translate-y-1/2 
 w-12 h-12 bg-white border border-black  flex items-center justify-center 
 z-50 cursor-pointer transition duration-300  hover:scale-101"
           >
             <img
-              src="\src\Components\next.png" // نفس المبدأ
+              src="/next.png" // نفس المبدأ
               alt="Next"
               className="w-8 h-8 pl-2  object-contain"
             />

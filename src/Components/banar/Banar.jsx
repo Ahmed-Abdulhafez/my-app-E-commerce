@@ -7,7 +7,7 @@ const Banar = () => {
       {/* image-1 */}
       <div className="relative group overflow-hidden">
         <img
-          src="src/assets/image-banar/left-banner-image.jpg"
+          src="/image-banar/left-banner-image.jpg"
           alt=""
           className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
         />
@@ -42,7 +42,7 @@ const Banar = () => {
         {/* image-2 */}
         <div className="relative group overflow-hidden">
           <img
-            src="src/assets/image-banar/baner-right-image-01.jpg"
+            src="/image-banar/baner-right-image-01.jpg"
             alt=""
             className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
           />
@@ -71,7 +71,7 @@ const Banar = () => {
         {/* image-3 */}
         <div className="relative group overflow-hidden">
           <img
-            src="src/assets/image-banar/baner-right-image-02.jpg"
+            src="/image-banar/baner-right-image-02.jpg"
             alt=""
             className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
           />
@@ -100,7 +100,7 @@ const Banar = () => {
         {/* image-4 */}
         <div className="relative group overflow-hidden">
           <img
-            src="src/assets/image-banar/baner-right-image-03.jpg"
+            src="/image-banar/baner-right-image-03.jpg"
             alt="Kids Banner"
             className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
           />
@@ -129,7 +129,7 @@ const Banar = () => {
         {/* image-5 */}
         <div className="parent relative group overflow-hidden">
           <img
-            src="src/assets/image-banar/baner-right-image-04.jpg"
+            src="/image-banar/baner-right-image-04.jpg"
             alt=""
             className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
           />
