@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-100 transition-transform duration-500 ${
+        className={`fixed top-0 left-0 w-full z-101 transition-transform duration-500 select-none ${
           showNav ? "translate-y-0" : "-translate-y-full"
         } bg-white shadow-md`}
       >
@@ -165,9 +165,9 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <ul className="flex flex-col gap-6 mt-4 px-6 py-4 w-70 h-screen absolute right-0 text-center bg-gray-100 shadow-md md:hidden">
+        <ul className="flex flex-col gap-6 select-none px-6 pt-30 py-4 w-70 h-screen z-100 fixed right-0 text-center bg-gray-100 shadow-md md:hidden">
           {links.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className="border-b  border-gray-300 pb-3">
               <Link
                 to={item.path}
                 className="block hover:text-yellow-400 transition-colors duration-300"

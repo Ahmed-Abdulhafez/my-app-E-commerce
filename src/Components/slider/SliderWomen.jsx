@@ -16,7 +16,7 @@ const SliderMan = () => {
   const products = product.women || [];
   return (
     <div>
-      <div className="mx-5 px-4 md:px-10 lg:px-15 mb-15 mt-10">
+      <div className="mx-5 px-4 md:px-10 lg:px-15 mb-15 mt-10 select-none">
         <div className="mb-10 mt-5">
           <h1 className="text-4xl font-bold mb-2">Women's Latest</h1>
           <p className="text-gray-600">
@@ -95,7 +95,7 @@ const SliderMan = () => {
           <div
             className="women-swiper-prev absolute left-[-60px] top-1/2 -translate-y-1/2 
 w-12 h-12 bg-white border border-black  flex items-center justify-center 
-z-50 cursor-pointer transition duration-300 hover:scale-101"
+z-50 cursor-pointer transition duration-300 hover:scale-105 hidden lg:flex"
           >
             <img
               src="/prev.png" // خلي الصورة في public واستخدم المسار كده
@@ -108,7 +108,7 @@ z-50 cursor-pointer transition duration-300 hover:scale-101"
           <div
             className="women-swiper-next absolute right-[-60px] top-1/2 -translate-y-1/2 
 w-12 h-12 bg-white border border-black  flex items-center justify-center 
-z-50 cursor-pointer transition duration-300  hover:scale-101"
+z-50 cursor-pointer transition duration-300  hover:scale-105 hidden lg:flex"
           >
             <img
               src="/next.png" // نفس المبدأ

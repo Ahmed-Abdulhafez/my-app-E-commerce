@@ -17,7 +17,7 @@ const Social = () => {
   }, []);
 
   return (
-    <div className="py-16 px-4 md:px-10">
+    <div className="py-16 px-4 md:px-10 select-none">
       <div className="container mx-auto">
         {/* العنوان والوصف */}
         <div className="mb-10 text-center">
