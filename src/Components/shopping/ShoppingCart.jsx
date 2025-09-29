@@ -11,7 +11,7 @@ const ShoppingCart = () => {
   const finalTotal = total + tax + shipping;
 
   return (
-    <div className="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 pt-20 mt-20 mx-auto gap-6">
+    <div className="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 pt-20 mt-20 mx-auto gap-6 select-none">
       {/* ✅ Cart Section */}
       <div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-semibold mb-6">

@@ -19,7 +19,7 @@ const ProductsPage = () => {
   }
 
   return (
-    <div className="max-w-6xl w-full h-screen px-6 py-30 mt-10 mx-auto">
+    <div className="max-w-6xl w-full h-auto px-6 py-30 mt-10 mx-auto select-none">
       {/* Breadcrumb */}
       <p className="text-sm text-gray-600">
         <span>Home</span> /

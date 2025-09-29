@@ -13,7 +13,7 @@ const Kids = () => {
   };
 
   return (
-    <div className="container mx-auto px-6 py-12 mt-18 font-poppins">
+    <div className="container mx-auto px-6 py-12 mt-18 font-poppins select-none">
       {/* Title Section */}
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-slate-800 mb-3">

@@ -162,15 +162,22 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-
       {/* Mobile Menu */}
       {open && (
-        <ul className="flex flex-col gap-6 select-none px-6 pt-30 py-4 w-70 h-screen z-100 fixed right-0 text-center bg-gray-100 shadow-md md:hidden">
+        <ul
+          className="fixed top-0 right-0 h-screen w-64 bg-gray-100 shadow-lg 
+               flex flex-col gap-6 px-6 py-8 z-[100] md:hidden
+               animate-slide-in pt-30"
+        >
+          {/* الروابط */}
           {links.map((item) => (
-            <li key={item.id} className="border-b  border-gray-300 pb-3">
+            <li
+              key={item.id}
+              className="border-b border-gray-300 pb-3 last:border-b-0"
+            >
               <Link
                 to={item.path}
-                className="block hover:text-yellow-400 transition-colors duration-300"
+                className="block py-2 text-lg font-medium text-gray-700 hover:text-amber-500 transition-colors duration-300"
                 onClick={() => setOpen(false)}
               >
                 {item.name}
@@ -178,16 +185,21 @@ const NavBar = () => {
             </li>
           ))}
 
-          <li>
-            <button className="w-full py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+          {/* الأزرار */}
+          <div className="flex flex-col gap-3">
+            <button
+              className="w-full py-2 px-6 my-5 rounded-xl bg-amber-200 hover:bg-amber-400 
+                   text-gray-800 font-medium transition duration-300"
+            >
               Log in
             </button>
-          </li>
-          <li>
-            <button className="w-full py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+            <button
+              className="w-full py-2 px-6 rounded-xl bg-amber-200 hover:bg-amber-400 
+                   text-gray-800 font-medium transition duration-300"
+            >
               Sign up
             </button>
-          </li>
+          </div>
         </ul>
       )}
     </>
