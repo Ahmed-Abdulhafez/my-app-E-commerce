@@ -67,10 +67,7 @@ const Banar = () => {
             link: "/kids",
           },
         ].map((item) => (
-          <div
-            key={item.id}
-            className="relative group overflow-hidden"
-          >
+          <div key={item.id} className="relative group overflow-hidden">
             <img
               src={item.src}
               alt={item.title}
@@ -82,9 +79,14 @@ const Banar = () => {
               <span className="text-sm sm:text-base">{item.desc}</span>
             </div>
             {/* Hover Content */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/70 text-white text-center opacity-0 scale-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100">
+            <Link
+              to={item.link}
+              className="absolute inset-0 flex items-center justify-center bg-black/70 text-white text-center opacity-0 scale-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100"
+            >
               <div className="px-6">
-                <h4 className="text-xl sm:text-2xl font-bold mb-2">{item.title}</h4>
+                <h4 className="text-xl sm:text-2xl font-bold mb-2">
+                  {item.title}
+                </h4>
                 <p className="mb-4 text-sm sm:text-base">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit incid.
                 </p>
@@ -95,7 +97,7 @@ const Banar = () => {
                   Discover More
                 </Link>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
