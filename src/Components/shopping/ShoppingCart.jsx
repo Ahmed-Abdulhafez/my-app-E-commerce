@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../prodoctContextApi/ContextApi";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const ShoppingCart = () => {
-  const { cart, removeFromCart } = useContext(ProductContext);
+  const { cart, removeItem, increaseQuantity, decreaseQuantity } =
+    useContext(ProductContext);
   const [showAddress, setShowAddress] = useState(false);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -40,6 +42,7 @@ const ShoppingCart = () => {
                 key={item.id}
                 className="grid grid-cols-[2fr_1fr_1fr] items-center bg-white/70 rounded-xl shadow-sm p-3 hover:shadow-md transition border"
               >
+                {/* صورة + تفاصيل */}
                 <div className="flex items-center md:gap-6 gap-3">
                   <div className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center border border-gray-200 rounded-lg overflow-hidden">
                     <img
@@ -50,22 +53,38 @@ const ShoppingCart = () => {
                   </div>
                   <div>
                     <p className="font-semibold">{item.title}</p>
-                    <div className="font-normal text-gray-500/80 text-sm">
-                      <p>Qty: {item.quantity}</p>
-                      <p>Price: ${item.price}</p>
+                    <p className="text-sm text-gray-500">Price: ${item.price}</p>
+
+                    {/* ✅ التحكم في العدد */}
+                    <div className="flex items-center gap-3 mt-2">
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
+                      >
+                        -
+                      </button>
+                      <span className="font-medium">{item.quantity}</span>
+                      <button
+                        onClick={() => increaseQuantity(item.id)}
+                        className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
 
+                {/* Subtotal */}
                 <p className="text-center font-medium">
                   ${item.price * item.quantity}
                 </p>
 
+                {/* زر الحذف */}
                 <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="cursor-pointer mx-auto bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
+                  onClick={() => removeItem(item.id)}
+                  className="cursor-pointer mx-auto bg-red-500 text-white text-2xl rounded-full hover:bg-red-600 transition"
                 >
-                  Remove
+                  <IoIosCloseCircleOutline />
                 </button>
               </div>
             ))}

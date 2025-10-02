@@ -1,5 +1,6 @@
 import React from "react";
 import "./banar.css";
+import { Link } from "react-router";
 
 const Banar = () => {
   return (
@@ -42,24 +43,28 @@ const Banar = () => {
             src: "/image-banar/baner-right-image-01.jpg",
             title: "Women",
             desc: "Best Clothes For Women",
+            link: "/womens",
           },
           {
             id: 2,
             src: "/image-banar/baner-right-image-02.jpg",
             title: "Men",
             desc: "Best Clothes For Men",
+            link: "/mens",
           },
           {
             id: 3,
             src: "/image-banar/baner-right-image-03.jpg",
             title: "Kids",
             desc: "Best Clothes For Kids",
+            link: "/kids",
           },
           {
             id: 4,
             src: "/image-banar/baner-right-image-04.jpg",
             title: "Accessories",
             desc: "Best Trend Accessories",
+            link: "/kids",
           },
         ].map((item) => (
           <div
@@ -83,12 +88,12 @@ const Banar = () => {
                 <p className="mb-4 text-sm sm:text-base">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit incid.
                 </p>
-                <a
-                  href="#"
+                <Link
+                  to={item.link}
                   className="inline-block px-6 py-2 border border-white rounded-full hover:bg-white hover:text-black transition"
                 >
                   Discover More
-                </a>
+                </Link>
               </div>
             </div>
           </div>
