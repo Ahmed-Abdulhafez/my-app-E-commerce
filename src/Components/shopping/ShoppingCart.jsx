@@ -47,7 +47,7 @@ const ShoppingCart = () => {
                   <div className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center border border-gray-200 rounded-lg overflow-hidden">
                     <img
                       className="w-full h-full object-cover"
-                      src={item.image}
+                      src={item.images[0]}
                       alt={item.title}
                     />
                   </div>

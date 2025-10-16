@@ -116,9 +116,9 @@ const NavBar = () => {
 
         <div className="container mx-auto flex items-center justify-between px-6 py-8">
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-wide cursor-pointer">
+          <Link to="/" className="text-2xl font-bold tracking-wide cursor-pointer">
             Logo
-          </div>
+          </Link>
 
           {/* Links - للشاشات الكبيرة */}
           <ul className="gap-6 hidden md:flex">
@@ -147,9 +147,9 @@ const NavBar = () => {
             <button className="hidden md:flex py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
               Log in
             </button>
-            <button className="hidden md:flex py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
+            <Link to='/SignUp' className="hidden md:flex py-2 px-8 rounded-2xl hover:bg-amber-400 transition cursor-pointer bg-amber-200">
               Sign up
-            </button>
+            </Link>
 
             {/* Hamburger Menu Button */}
             <button onClick={() => setOpen(!open)} className="md:hidden">

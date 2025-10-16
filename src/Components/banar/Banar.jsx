@@ -1,6 +1,6 @@
 import React from "react";
 import "./banar.css";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; // ✅ استخدم react-router-dom وليس react-router
 
 const Banar = () => {
   return (
@@ -24,19 +24,18 @@ const Banar = () => {
             <p className="mb-4 text-sm sm:text-base">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit incid.
             </p>
-            <a
-              href="#"
+            <Link
+              to="/womens"
               className="inline-block px-6 py-2 border border-white rounded-full hover:bg-white hover:text-black transition"
             >
               Discover More
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Right Side Grid */}
       <div className="grid grid-cols-2 gap-7">
-        {/* Reusable Component */}
         {[
           {
             id: 1,
@@ -64,7 +63,7 @@ const Banar = () => {
             src: "/image-banar/baner-right-image-04.jpg",
             title: "Accessories",
             desc: "Best Trend Accessories",
-            link: "/kids",
+            link: "/accessories",
           },
         ].map((item) => (
           <div key={item.id} className="relative group overflow-hidden">
@@ -78,6 +77,7 @@ const Banar = () => {
               <h2 className="text-lg sm:text-xl font-bold">{item.title}</h2>
               <span className="text-sm sm:text-base">{item.desc}</span>
             </div>
+
             {/* Hover Content */}
             <Link
               to={item.link}
@@ -90,12 +90,10 @@ const Banar = () => {
                 <p className="mb-4 text-sm sm:text-base">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit incid.
                 </p>
-                <Link
-                  to={item.link}
-                  className="inline-block px-6 py-2 border border-white rounded-full hover:bg-white hover:text-black transition"
-                >
+                {/* ❌ Link داخل Link → تم تغييره */}
+                <button className="inline-block px-6 py-2 border border-white rounded-full hover:bg-white hover:text-black transition">
                   Discover More
-                </Link>
+                </button>
               </div>
             </Link>
           </div>

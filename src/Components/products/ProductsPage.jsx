@@ -1,134 +1,444 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../prodoctContextApi/ContextApi";
+import { useNavigate } from "react-router-dom";
 
 const ProductsPage = () => {
   const { selsct, addToCart } = useContext(ProductContext);
+  const navigate = useNavigate();
 
-  // خليت الصورة الأساسية أول عنصر + باقي الصور من img[]
-  const imagesArray = [selsct.image, ...(selsct?.img?.map((item) => item.image) || [])];
+  const imagesArray = selsct?.images || [];
+  const [thumbnail, setThumbnail] = useState(
+    imagesArray.length > 0
+      ? typeof imagesArray[0] === "string"
+        ? imagesArray[0]
+        : imagesArray[0].url
+      : ""
+  );
 
-  // الصورة الرئيسية تبدأ بالأساسية
-  const [thumbnail, setThumbnail] = useState(imagesArray[0]);
+  const [quantity, setQuantity] = useState(1);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-    const handleAddToCart = (selsct) => {
-    addToCart(selsct);
-  };
+  useEffect(() => {
+    if (imagesArray.length > 0) {
+      setThumbnail(imagesArray[0]);
+    }
+  }, [selsct]);
 
   if (!selsct) {
-    return <h2 className="text-center text-xl mt-10">No Product Selected</h2>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-24 h-24 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg
+              className="w-12 h-12 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-semibold text-slate-700 mb-3">
+            لم يتم اختيار منتج
+          </h2>
+          <p className="text-slate-500 mb-6">يرجى اختيار منتج لعرض التفاصيل</p>
+          <button
+            onClick={() => navigate("/")}
+            className="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors"
+          >
+            العودة للمتجر
+          </button>
+        </div>
+      </div>
+    );
   }
 
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) {
+      addToCart(selsct);
+    }
+  };
+
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, i) => {
+      const starValue = i + 1;
+      let starClass = "text-gray-300";
+
+      if (starValue <= Math.floor(rating)) {
+        starClass = "text-yellow-400";
+      } else if (rating - i > 0.5) {
+        starClass = "text-yellow-300";
+      }
+
+      return (
+        <span key={i} className={`text-lg ${starClass} transition-colors`}>
+          ★
+        </span>
+      );
+    });
+  };
+
   return (
-    <div className="max-w-6xl w-full h-auto px-6 py-30 mt-10 mx-auto select-none">
-      {/* Breadcrumb */}
-      <p className="text-sm text-gray-600">
-        <span>Home</span> /
-        <span> Products</span> /
-        <span> {selsct.category || "Category"}</span> /
-        <span className="text-indigo-500"> {selsct.title}</span>
-      </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 🔹 مسار التنقل */}
+        <nav className="flex items-center space-x-2 space-x-reverse text-sm text-slate-600 mb-8">
+          <button
+            onClick={() => navigate("/")}
+            className="hover:text-indigo-600 transition-colors"
+          >
+            الرئيسية
+          </button>
+          <span className="text-slate-400">/</span>
+          <button
+            onClick={() => navigate("/products")}
+            className="hover:text-indigo-600 transition-colors"
+          >
+            المنتجات
+          </button>
+          <span className="text-slate-400">/</span>
+          {selsct.category && (
+            <>
+              <span className="text-slate-500 uppercase">
+                {selsct.category.name}
+              </span>
+              <span className="text-slate-400">/</span>
+            </>
+          )}
+          <span className="text-indigo-600 font-medium truncate">
+            {selsct.title}
+          </span>
+        </nav>
 
-      {/* Main Section */}
-      <div className="flex flex-col md:flex-row gap-16 mt-6">
-        {/* Images Section */}
-        <div className="flex gap-3">
-          {/* Thumbnails */}
-          <div className="flex flex-col gap-3">
-            {imagesArray.map((img, index) => (
-              <div
-                key={index}
-                onClick={() => setThumbnail(img)}
-                className="border max-w-24 border-gray-300 rounded overflow-hidden cursor-pointer hover:scale-105 transition"
-              >
-                <img src={img} alt={`Thumbnail ${index + 1}`} />
+        {/* 🔹 القسم الرئيسي */}
+        <div className="bg-white rounded-3xl shadow-2xl border border-white overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8">
+            {/* 🔹 قسم الصور */}
+            <div className="space-y-6">
+              {/* الصورة الرئيسية */}
+              <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+                <div className="aspect-square max-w-md mx-auto">
+<img
+  src={
+    typeof (thumbnail?.url || thumbnail) === "string"
+      ? (thumbnail.url || thumbnail).startsWith("http")
+        ? thumbnail.url || thumbnail
+        : `https://my-app-bacg-end.vercel.app/${(thumbnail.url || thumbnail).replace(/^\/+/, "")}`
+      : imagesArray[0]
+      ? typeof (imagesArray[0]?.url || imagesArray[0]) === "string"
+        ? (imagesArray[0].url || imagesArray[0]).startsWith("http")
+          ? imagesArray[0].url || imagesArray[0]
+          : `https://my-app-bacg-end.vercel.app/${(imagesArray[0].url || imagesArray[0]).replace(/^\/+/, "")}`
+        : "/placeholder.png"
+      : "/placeholder.png"
+  }
+  alt={selsct.title || "Product Image"}
+  className="w-full h-full object-contain rounded-xl transition-all duration-500 hover:scale-105"
+/>
+
+                </div>
               </div>
-            ))}
-          </div>
 
-          {/* Main Image */}
-          <div className=" border-gray-300 max-w-100 rounded overflow-hidden">
-            <img
-              src={thumbnail}
-              alt={selsct.title}
-              className="w-[800px] h-[450px] object-cover"
-            />
+              {/* الصور المصغرة */}
+              {imagesArray.length > 1 && (
+                <div className="flex justify-center space-x-4 space-x-reverse">
+                  {imagesArray.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setThumbnail(typeof img === "string" ? img : img.url);
+                        setActiveImageIndex(index);
+                      }}
+                      className={`p-2 border-2 rounded-xl transition-all duration-300 hover:scale-110 ${
+                        activeImageIndex === index
+                          ? "border-indigo-500 bg-indigo-50"
+                          : "border-slate-200 hover:border-slate-300"
+                      }`}
+                    >
+                      <img
+                        src={typeof img === "string" ? img : img.url}
+                        alt={`Thumbnail ${index + 1}`}
+                        className="w-16 h-16 object-cover rounded-lg"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* 🔹 تفاصيل المنتج */}
+            <div className="flex flex-col space-y-8">
+              {/* العنوان والفئة */}
+              <div>
+                <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-3 leading-tight">
+                  {selsct.title}
+                </h1>
+                {selsct.category && (
+                  <div className="inline-flex items-center px-4 py-2 bg-slate-100 text-slate-700 rounded-2xl text-sm font-medium">
+                    {selsct.category.name}
+                  </div>
+                )}
+              </div>
+
+              {/* التقييمات */}
+              <div className="flex items-center space-x-4 space-x-reverse">
+                <div className="flex items-center space-x-1 space-x-reverse">
+                  {renderStars(selsct.rating || 0)}
+                </div>
+                <span className="text-slate-500 text-lg">
+                  {selsct.rating?.toFixed(1) || "0.0"}
+                </span>
+                <span className="text-slate-400">•</span>
+                <span className="text-slate-500">
+                  ({selsct.numReviews || 0} تقييم)
+                </span>
+              </div>
+
+              {/* السعر */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-4 space-x-reverse">
+                  <span className="text-4xl font-bold text-green-600">
+                    ${selsct.price}
+                  </span>
+                  {selsct.oldPrice && (
+                    <span className="text-2xl text-slate-400 line-through">
+                      ${selsct.oldPrice}
+                    </span>
+                  )}
+                  {selsct.oldPrice && (
+                    <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold">
+                      وفر ${(selsct.oldPrice - selsct.price).toFixed(2)}
+                    </span>
+                  )}
+                </div>
+                <p className="text-slate-500 text-sm">شامل لجميع الضرائب</p>
+              </div>
+
+              {/* الوصف */}
+              {selsct.desc && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-slate-900">
+                    وصف المنتج
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-lg">
+                    {selsct.desc}
+                  </p>
+                </div>
+              )}
+
+              {/* الكمية */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-slate-900">الكمية</h3>
+                <div className="flex items-center space-x-4 space-x-reverse">
+                  <div className="flex items-center border border-slate-300 rounded-2xl overflow-hidden">
+                    <button
+                      onClick={() =>
+                        setQuantity((prev) => Math.max(1, prev - 1))
+                      }
+                      className="px-4 py-3 text-slate-600 hover:bg-slate-50 transition-colors"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M20 12H4"
+                        />
+                      </svg>
+                    </button>
+                    <span className="px-6 py-3 text-lg font-semibold text-slate-800 min-w-12 text-center">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity((prev) => prev + 1)}
+                      className="px-4 py-3 text-slate-600 hover:bg-slate-50 transition-colors"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <span className="text-slate-500 text-sm">
+                    {selsct.stock || 10} متوفر في المخزون
+                  </span>
+                </div>
+              </div>
+
+              {/* الأزرار */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex-1 bg-indigo-600 text-white py-4 px-8 rounded-2xl font-semibold hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300 group"
+                >
+                  <svg
+                    className="w-6 h-6 ml-2 group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                  أضف إلى السلة ({quantity})
+                </button>
+
+                <button className="flex-1 border-2 border-indigo-600 text-indigo-600 py-4 px-8 rounded-2xl font-semibold hover:bg-indigo-50 transition-all duration-300 flex items-center justify-center group">
+                  <svg
+                    className="w-6 h-6 ml-2 group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  شراء الآن
+                </button>
+              </div>
+
+              {/* معلومات إضافية */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-200">
+                <div className="text-center p-4 bg-slate-50 rounded-2xl">
+                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <svg
+                      className="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-slate-800 mb-1">
+                    شحن سريع
+                  </h4>
+                  <p className="text-slate-500 text-sm">توصيل خلال 2-3 أيام</p>
+                </div>
+
+                <div className="text-center p-4 bg-slate-50 rounded-2xl">
+                  <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-slate-800 mb-1">
+                    ضمان الجودة
+                  </h4>
+                  <p className="text-slate-500 text-sm">منتجات أصلية 100%</p>
+                </div>
+
+                <div className="text-center p-4 bg-slate-50 rounded-2xl">
+                  <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-slate-800 mb-1">
+                    إرجاع سهل
+                  </h4>
+                  <p className="text-slate-500 text-sm">30 يوم للإرجاع</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Product Details */}
-        <div className="text-sm w-full md:w-1/2">
-          <h1 className="text-3xl font-medium">{selsct.title}</h1>
-
-          {/* Rating */}
-          <div className="flex items-center gap-0.5 mt-2">
-            {Array(5)
-              .fill("")
-              .map((_, i) =>
-                parseFloat(selsct.start) > i ? (
-                  <svg
-                    key={i}
-                    width="14"
-                    height="13"
-                    viewBox="0 0 18 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.049.927c.3-.921 1.603-.921 1.902 0l1.294 3.983a1 1 0 0 0 .951.69h4.188c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 0 0-.364 1.118l1.295 3.983c.299.921-.756 1.688-1.54 1.118L9.589 13.63a1 1 0 0 0-1.176 0l-3.389 2.46c-.783.57-1.838-.197-1.539-1.118L4.78 10.99a1 1 0 0 0-.363-1.118L1.028 7.41c-.783-.57-.38-1.81.588-1.81h4.188a1 1 0 0 0 .95-.69z"
-                      fill="#615fff"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    key={i}
-                    width="14"
-                    height="13"
-                    viewBox="0 0 18 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.04894 0.927049C8.3483 0.00573802 9.6517 0.00574017 9.95106 0.927051L11.2451 4.90983C11.379 5.32185 11.763 5.60081 12.1962 5.60081H16.3839C17.3527 5.60081 17.7554 6.84043 16.9717 7.40983L13.5838 9.87132C13.2333 10.126 13.0866 10.5773 13.2205 10.9894L14.5146 14.9721C14.8139 15.8934 13.7595 16.6596 12.9757 16.0902L9.58778 13.6287C9.2373 13.374 8.7627 13.374 8.41221 13.6287L5.02426 16.0902C4.24054 16.6596 3.18607 15.8934 3.48542 14.9721L4.7795 10.9894C4.91338 10.5773 4.76672 10.126 4.41623 9.87132L1.02827 7.40983C0.244561 6.84043 0.647338 5.60081 1.61606 5.60081H5.8038C6.23703 5.60081 6.62099 5.32185 6.75486 4.90983L8.04894 0.927049Z"
-                      fill="#615fff"
-                      fillOpacity="0.35"
-                    />
-                  </svg>
-                )
-              )}
-            <p className="text-base ml-2">({selsct.start})</p>
-          </div>
-
-          {/* Price */}
-          <div className="mt-6">
-            {selsct.oldPrice && (
-              <p className="text-gray-500/70 line-through">
-                MRP: ${selsct.oldPrice}
-              </p>
-            )}
-            <p className="text-2xl font-medium">MRP: {selsct.price}</p>
-            <span className="text-gray-500/70">(inclusive of all taxes)</span>
-          </div>
-
-          {/* Description */}
-          <p className="text-base font-medium mt-6">About Product</p>
-          <ul className="list-disc ml-4 text-gray-500/70">
-            {Array.isArray(selsct.description) ? (
-              selsct.description.map((desc, index) => (
-                <li key={index}>{desc}</li>
-              ))
-            ) : (
-              <li>{selsct.description}</li>
-            )}
-          </ul>
-
-          {/* Buttons */}
-          <div className="flex items-center mt-10 gap-4 text-base">
-            <button onClick={() => handleAddToCart(selsct)} className="w-full py-3.5 cursor-pointer font-medium bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
-              Add to Cart
+        {/* 🔹 قسم المنتجات ذات الصلة (يمكن إضافته لاحقًا) */}
+        <div className="mt-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-slate-900">
+              منتجات ذات صلة
+            </h2>
+            <button className="text-indigo-600 hover:text-indigo-700 font-semibold flex items-center">
+              مشاهدة الكل
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
             </button>
-            <button className="w-full py-3.5 cursor-pointer font-medium bg-indigo-500 text-white hover:bg-indigo-600 transition">
-              Buy now
-            </button>
+          </div>
+          <div className="text-center py-12 bg-slate-50 rounded-3xl border border-slate-200">
+            <div className="w-16 h-16 bg-slate-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg
+                className="w-8 h-8 text-slate-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-slate-700 mb-2">
+              منتجات ذات صلة
+            </h3>
+            <p className="text-slate-500">سيتم عرض المنتجات المشابهة هنا</p>
           </div>
         </div>
       </div>

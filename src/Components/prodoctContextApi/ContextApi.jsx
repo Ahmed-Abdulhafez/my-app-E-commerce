@@ -13,18 +13,30 @@ export const ProductProvider = ({ children }) => {
   const timerRef = useRef(null); // للتحكم في التايمر
 
   //3- fetch data from API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("/data.json");
-        setProduct(res.data || []);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      }
-    };
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      // const res = await axios.get("http://localhost:5000/products/getProduct");
 
-    fetchData();
-  }, []);
+
+      const res = await axios.get("https://my-app-bacg-end.vercel.app/products/getProduct");
+      setProduct(res.data || []);
+      console.log("Products fetched:", res.data);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      if (err.response) {
+        console.log("Server responded with:", err.response.data);
+      } else if (err.request) {
+        console.log("No response received:", err.request);
+      } else {
+        console.log("Axios error:", err.message);
+      }
+    }
+  };
+
+  fetchData();
+}, []);
+
 
   // function to show toast message
   const showMessage = (msg, duration = 2500) => {
